@@ -1,0 +1,27 @@
+---
+- hosts: localhost
+  become: true
+  tasks:
+    - name: Configure Git username and email
+      shell: git config --global user.name "Abdulrahman-Alpha" && git config --global user.email "sir.abdulrahman201@gmail.com"
+
+    - name: List Git configurations
+      shell: git config --list
+
+    - name: Copy Git config to another file
+      copy:
+        src: ~/.gitconfig
+        dest: /tmp/gitconfig
+
+    - name: Remove Git config file
+      file:
+        path: ~/.gitconfig
+        state: absent
+
+    - name: Copy Git config file from local machine
+      copy:
+        src: /path/to/copied/gitconfig
+        dest: ~/.gitconfig
+
+# run this command to execute the playbook
+# ansible-playbook git_config.yaml
