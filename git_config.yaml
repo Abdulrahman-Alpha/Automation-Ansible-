@@ -18,10 +18,18 @@
         path: ~/.gitconfig
         state: absent
 
+    - name: Copy file to target host
+      copy:
+        src: /path/to/copied/gitconfig
+        dest: /path/on/target/host
+        remote_src: yes
+
     - name: Copy Git config file from local machine
       copy:
         src: /path/to/copied/gitconfig
         dest: ~/.gitconfig
+    
+    
 
 # run this command to execute the playbook
 # ansible-playbook git_config.yaml
